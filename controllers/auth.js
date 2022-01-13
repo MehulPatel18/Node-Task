@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// register API
 module.exports.signup = (req, res) => {
 
     const { password, email } = req.body;
@@ -40,6 +41,7 @@ module.exports.signup = (req, res) => {
     });
 }
 
+// login API
 module.exports.signin = (req, res) => {
     
     const { email, password } = req.body;
@@ -86,8 +88,9 @@ module.exports.signin = (req, res) => {
     });
 }
 
+
+// Get user data (only access if use logged in)
 module.exports.getuser = (req, res) => {
-    console.log("called");
     User.find({})
     .then((users) => {
         if(!users.length) {
